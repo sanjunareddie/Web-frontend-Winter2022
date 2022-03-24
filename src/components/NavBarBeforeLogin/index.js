@@ -13,8 +13,8 @@ function NavBarBeforeLogin() {
           <Navbar.Brand href="#home">
             <img
               src={Logo}
-              width="70"
-              height="35"
+              width="60"
+              height="30"
               className="d-inline-block align-top"
               alt="React Bootstrap logo"
             />
