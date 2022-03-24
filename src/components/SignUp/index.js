@@ -49,7 +49,7 @@ function SignUp() {
       </div>
       <div>
         <hr className="simple-line" />
-      </div>
+      </div>    
       <div className="button-center forgot-password text-right">
         <p className="forgot-password text-right">
           Already registered ? <a href="#">log in</a>

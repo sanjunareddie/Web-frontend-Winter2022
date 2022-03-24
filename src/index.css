@@ -26,6 +26,14 @@ body {
   justify-content: center;
 }
 
+.navbar-color {
+  background-color: #4267b2 !important;
+}
+
+.nav-text-color {
+  color: white !important;
+}
+
 .simple-line {
   height: 1px;
   border: none;
