@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
@@ -8,25 +9,32 @@ import Logo from "../../Resources/housify-logo-white.png";
 function NavBarBeforeLogin() {
   return (
     <>
-      <Navbar className="navbar-color navbar navbar-dark">
+      <Navbar fixed="top" className="navbar-color navbar navbar-dark">
         <Container>
           <Navbar.Brand href="#home">
-            <img
-              src={Logo}
-              width="60"
-              height="30"
-              className="d-inline-block align-top"
-              alt="React Bootstrap logo"
-            />
+            <NavLink to="/sign-in">
+              <img
+                src={Logo}
+                width="60"
+                height="30"
+                className="d-inline-block align-top"
+                alt="React Bootstrap logo"
+              />
+            </NavLink>
           </Navbar.Brand>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="nav-text-color me-auto">
-              <Nav.Link href="#home" className="nav-text-color">
-                Sign-in
+              <Nav.Link>
+                <NavLink to="/sign-in" className="nav-text-color">
+                  Sign-in
+                </NavLink>
               </Nav.Link>
-              <Nav.Link href="#link" className="nav-text-color">
-                Sign-up
+              <Nav.Link>
+                <NavLink to="/sign-up" className="nav-text-color">
+                  Sign-up
+                </NavLink>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

@@ -9,9 +9,11 @@ import SignUp from "./components/SignUp";
 function App() {
   return (
     <>
-      <NavBarBeforeLogin />
-
-      <div className="App">
+      <div>
+        <NavBarBeforeLogin />
+      </div>
+      <br />
+      <div className="App center-signin-signup">
         <div className="outer">
           <div className="inner">
             <Routes>
