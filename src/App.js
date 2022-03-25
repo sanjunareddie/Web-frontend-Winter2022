@@ -5,6 +5,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import NavBarBeforeLogin from "./components/NavBarBeforeLogin";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
@@ -14,15 +15,12 @@ function App() {
       </div>
       <br />
       <div className="App center-signin-signup">
-        <div className="outer">
-          <div className="inner">
-            <Routes>
-              <Route exact path="/" element={<SignIn />} />
-              <Route path="/sign-in" element={<SignIn />} />
-              <Route path="/sign-up" element={<SignUp />} />
-            </Routes>
-          </div>
-        </div>
+        <Routes>
+          <Route exact path="/" element={<SignIn />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
       </div>
     </>
   );
