@@ -3,14 +3,15 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { LinkContainer } from "react-router-bootstrap";
 
 import ProfileImage from "../../Resources/user-avatar02.png";
 
 function UserProfile() {
   return (
-    <div className="outer">
-      <div className="inner">
-        <Container>
+    <Container>
+      <div className="outer">
+        <div className="inner">
           <Row>
             <Col>
               <div className="button-center">
@@ -68,7 +69,9 @@ function UserProfile() {
               <Row>
                 <Col>
                   <div className="button-center">
-                    <Button variant="primary">Saved Searches</Button>
+                    <LinkContainer to="/saved-searches">
+                      <Button variant="primary">Saved Searches</Button>
+                    </LinkContainer>
                   </div>
                 </Col>
                 <Col>
@@ -90,11 +93,10 @@ function UserProfile() {
                 </Col>
               </Row>
             </Col>
-            {/*<Col className="profile">Saved Searches Part</Col>*/}
           </Row>
-        </Container>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

@@ -8,6 +8,7 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
 import UserProfile from "./components/UserProfile";
+import SavedSearches from "./components/SavedSearches";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<UserProfile />} />
+          <Route path="/saved-searches" element={<SavedSearches />} />
         </Routes>
       </div>
     </>
