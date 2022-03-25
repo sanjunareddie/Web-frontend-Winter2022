@@ -69,6 +69,7 @@ html,
 
 .outer {
   display: flex;
+  padding-top: 10%;
   justify-content: center;
   flex-direction: column;
   text-align: left;

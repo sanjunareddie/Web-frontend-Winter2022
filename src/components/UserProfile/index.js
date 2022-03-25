@@ -64,6 +64,7 @@ function UserProfile() {
                 />
               </div>
               <br />
+              <br />
               <Row>
                 <Col>
                   <div className="button-center">
@@ -73,6 +74,18 @@ function UserProfile() {
                 <Col>
                   <div className="button-center">
                     <Button variant="success">Save Changes</Button>
+                  </div>
+                </Col>
+              </Row>
+              <br />
+              <div>
+                <hr className="simple-line" />
+              </div>
+              <br />
+              <Row>
+                <Col>
+                  <div className="button-center">
+                    <Button variant="danger">Sign out</Button>
                   </div>
                 </Col>
               </Row>
