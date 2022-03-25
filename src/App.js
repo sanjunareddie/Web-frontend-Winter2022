@@ -3,15 +3,17 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, Link } from "react-router-dom";
 
 import NavBarBeforeLogin from "./components/NavBarBeforeLogin";
+import NavBarAfterLogin from "./components/NavBarAfterLogin";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
+import UserProfile from "./components/UserProfile";
 
 function App() {
   return (
     <>
       <div>
-        <NavBarBeforeLogin />
+        <NavBarAfterLogin />
       </div>
       <br />
       <div className="App center-signin-signup">
@@ -20,6 +22,7 @@ function App() {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Routes>
       </div>
     </>
