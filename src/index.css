@@ -59,7 +59,7 @@ html,
 #root,
 .outer {
   width: 100%;
-  height: 100%;
+  margin-top: 25px;
 }
 
 .navbar-light {
@@ -69,7 +69,7 @@ html,
 
 .outer {
   display: flex;
-  padding-top: 10%;
+  scroll-padding-top: 100px;
   justify-content: center;
   flex-direction: column;
   text-align: left;
@@ -103,13 +103,36 @@ html,
   justify-content: center;
 }
 
+.saved-searches-house-card-division {
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flexible-saved-search-houses {
+  width: auto;
+}
+
+.house-card-margin {
+  margin: 10px;
+}
+
 .profile-name-font {
   color: #4f518c;
   font-weight: bold;
 }
 
+.title-margin {
+  margin-bottom: 30px;
+}
+
 .tag-line-font {
   color: #907ad6;
+}
+
+.align-left-property-card {
+  justify-content: center;
 }
 
 .outer .form-control:focus {

@@ -19,7 +19,7 @@ function UserProfile() {
                   src={ProfileImage}
                   height={100}
                   width={100}
-                  alt="Housify Logo"
+                  alt="User Profile Image"
                 />
               </div>
               <br />

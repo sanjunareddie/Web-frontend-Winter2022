@@ -16,7 +16,6 @@ function App() {
       <div>
         <NavBarAfterLogin />
       </div>
-      <br />
       <div className="App center-signin-signup">
         <Routes>
           <Route exact path="/" element={<SignIn />} />
