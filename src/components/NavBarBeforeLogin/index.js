@@ -11,31 +11,26 @@ function NavBarBeforeLogin() {
     <>
       <Navbar fixed="top" className="navbar-color navbar navbar-dark">
         <Container>
-          <Navbar.Brand href="#home">
-            <NavLink to="/sign-in">
-              <img
-                src={Logo}
-                width="60"
-                height="30"
-                className="d-inline-block align-top"
-                alt="React Bootstrap logo"
-              />
-            </NavLink>
-          </Navbar.Brand>
+          <NavLink to="/sign-in">
+            <img
+              src={Logo}
+              width="60"
+              height="30"
+              className="d-inline-block align-top"
+              alt="React Bootstrap logo"
+            />
+          </NavLink>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="nav-text-color me-auto">
-              <Nav.Link>
-                <NavLink to="/sign-in" className="nav-text-color">
-                  Sign-in
-                </NavLink>
-              </Nav.Link>
-              <Nav.Link>
-                <NavLink to="/sign-up" className="nav-text-color">
-                  Sign-up
-                </NavLink>
-              </Nav.Link>
+              <NavLink to="/sign-in" className="nav-text-color">
+                Sign-in
+              </NavLink>
+
+              <NavLink to="/sign-up" className="nav-text-color">
+                Sign-up
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>

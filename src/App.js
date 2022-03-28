@@ -19,11 +19,11 @@ function App() {
       <div className="App center-signin-signup">
         <Routes>
           <Route exact path="/" element={<SignIn />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/saved-searches" element={<SavedSearches />} />
+          <Route exact path="/sign-in" element={<SignIn />} />
+          <Route exact path="/sign-up" element={<SignUp />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route exact path="/profile" element={<UserProfile />} />
+          <Route exact path="/saved-searches" element={<SavedSearches />} />
         </Routes>
       </div>
     </>
