@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Logo from "../../Resources/housify-logo.png";
+import axios from "axios";
 
 function SignIn(props) {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function SignIn(props) {
     setData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!emailRegex.test(data.email)) {
@@ -34,7 +35,19 @@ function SignIn(props) {
       );
     } else {
       setErrorMessage("");
-      navigate("/dashboard");
+      try {
+        const url = "http://localhost:8080/sign-in-user";
+        const res = await axios.post(url, data);
+        console.log(res);
+        console.log("This is inside Try Block");
+        console.log(res.message);
+        if (res.status === 200) {
+          navigate("/dashboard");
+        }
+      } catch (error) {
+        setErrorMessage(error.message);
+        console.log(error);
+      }
     }
   };
 

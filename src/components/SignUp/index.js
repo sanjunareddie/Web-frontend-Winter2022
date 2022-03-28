@@ -56,7 +56,7 @@ function SignUp() {
     } else {
       setErrorMessage("");
       try {
-        const url = "http://localhost:8080/add-user";
+        const url = "http://localhost:8080/sign-up-user";
         const res = await axios.post(url, data);
         console.log(res);
         console.log("This is inside Try Block");
@@ -64,8 +64,10 @@ function SignUp() {
         if (res.status === 201) {
           navigate("/sign-in");
         }
-      } catch (error) {}
-      // console.log("This is inside CATCH Block");
+      } catch (error) {
+        setErrorMessage(error.message);
+        console.log(error);
+      }
     }
   };
 
