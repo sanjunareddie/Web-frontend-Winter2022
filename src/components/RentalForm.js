@@ -44,10 +44,8 @@ const RentalForm = () => {
     const regex = /^[a-zA-Z ]+$/i;
     const regex2 = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const regex3 = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
-    const regex4 =
-      /^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY][ -]?\d[ABCEGHJKLMNPRSTVXY]\d$/i;
-    const regex5 = /^[0-9\b]+$/;
-    const regex6 = /^\d{2}[./-]\d{2}[./-]\d{4}$/;
+    const regex4 = /^[0-9\b]+$/;
+    const regex5 = /^\d{2}[./-]\d{2}[./-]\d{4}$/;
 
     if (!fullName) {
       return alert("Full Name is required!");
@@ -76,32 +74,25 @@ const RentalForm = () => {
     if (!postalcode) {
       return alert("Postal Code is required!");
     } 
-    // else if (!regex4.test(postalcode)) {
-    //   return alert("Postal Code must Valid one!!");
-    // }
-
+   
     if (!noofpeople) {
       return alert("Number of People field is required!");
-    } else if (!regex5.test(noofpeople)) {
+    } else if (!regex4.test(noofpeople)) {
       return alert("Number of People field should be valid one!");
     }
 
     if (!date) {
       return alert("Date field is required!");
-    } else if (!regex6.test(date)) {
+    } else if (!regex5.test(date)) {
       return alert("Date field should be valid one!");
     }
 
     axios
       .post("http://localhost:8080/applicationdashboardRoute/addapplications", { formValues })
       .then((res) => {
-        console.log(res.data.msg);
         alert("All values submit successfully!! ");
-
-        //navigate("/ProfileListing");
       })
       .catch((error) => {
-        console.log(error.response);
         alert("Values entered wrong!!");
       });
   };

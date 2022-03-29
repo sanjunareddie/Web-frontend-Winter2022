@@ -25,13 +25,10 @@ const ViewApplicationStatus = () => {
       .get("http://localhost:8080/applicationdashboardRoute/applications")
       .then((res) => {
         if (res.data.success) {
-          console.log(res.data.applications);
           setApplication(res.data.applications);
         }
-        //navigate("/ProfileListing");
       })
       .catch((error) => {
-        console.log(error.response);
         alert("Values entered wrong!!");
       });
   };
@@ -40,12 +37,10 @@ const ViewApplicationStatus = () => {
     axios
       .post("http://localhost:8080/applicationdashboardRoute/deleteApplication", { app })
       .then((res) => {
-        console.log(res.data.message);
         alert(" Deleted successfully");
         loadApplications();
       })
       .catch((error) => {
-        console.log(error.response);
         alert("Values entered wrong!!");
       });
   };
