@@ -17,7 +17,7 @@ const ViewApplicationStatus = () => {
 
   const loadApplications = (e) => {
     axios
-      .get("http://localhost:2000/applicationdashboardRoute/applications")
+      .get("http://localhost:8080/applicationdashboardRoute/applications")
       .then((res) => {
         if (res.data.success) {
           console.log(res.data.applications);
@@ -33,7 +33,7 @@ const ViewApplicationStatus = () => {
 
   const deleteApplication = (app) => {
     axios
-      .post("http://localhost:2000/applicationdashboardRoute/deleteApplication", { app })
+      .post("http://localhost:8080/applicationdashboardRoute/deleteApplication", { app })
       .then((res) => {
         console.log(res.data.message);
         alert(" Deleted successfully");
@@ -47,16 +47,6 @@ const ViewApplicationStatus = () => {
 
   return (
     <>
-      <div
-        style={{
-          background: "#4267b2",
-          height: "50px",
-          color: "white",
-          textAlign: "center",
-        }}
-      >
-        <p>Nav bar</p>
-      </div>
       <h4
         style={{
           color: "#4267b2",
