@@ -4,14 +4,16 @@ import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { Link, useNavigate } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 
 import ProfileImage from "../../Resources/user-avatar02.png";
 import axios from "axios";
 
 function UserProfile() {
+  const navigate = useNavigate();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -31,7 +33,10 @@ function UserProfile() {
     }
   }, []);
 
-  console.log("firstName", firstName);
+  const handleSignOut = () => {
+    localStorage.clear();
+    navigate("/sign-in");
+  };
 
   return (
     <Container>
@@ -115,7 +120,9 @@ function UserProfile() {
               <Row>
                 <Col>
                   <div className="button-center">
-                    <Button variant="danger">Sign out</Button>
+                    <Button variant="danger" onClick={handleSignOut}>
+                      Sign out
+                    </Button>
                   </div>
                 </Col>
               </Row>
