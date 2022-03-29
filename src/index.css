@@ -164,3 +164,16 @@ html,
 .forgot-password a {
   color: #167bff;
 }
+
+@media screen and (max-width: 576px) {
+  .center-signin-signup {
+    display: unset;
+  }
+  .inner {
+    width: 100%;
+    padding: 40px 10px 45px;
+  }
+  .outer {
+    padding: 10px;
+  }
+}

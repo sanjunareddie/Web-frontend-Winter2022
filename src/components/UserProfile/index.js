@@ -1,13 +1,38 @@
 import React from "react";
+import { useEffect, useState } from "react";
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { LinkContainer } from "react-router-bootstrap";
 
 import ProfileImage from "../../Resources/user-avatar02.png";
+import axios from "axios";
 
 function UserProfile() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  useEffect(async () => {
+    try {
+      const url = "http://localhost:8080/getOneUserDetails";
+      const res = await axios.post(url, {
+        email: localStorage.getItem("email"),
+      });
+      console.log(res);
+      if (res.status === 200) {
+        setFirstName(res.data.users.firstName);
+        setLastName(res.data.users.lastName);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  console.log("firstName", firstName);
+
   return (
     <Container>
       <div className="outer">
@@ -24,7 +49,9 @@ function UserProfile() {
               </div>
               <br />
               <div>
-                <h3 className="profile-name-font">Kushang Mistry</h3>
+                <h3 className="profile-name-font">
+                  {firstName} {lastName}
+                </h3>
               </div>
               <br />
               <div className="button-center">

@@ -14,6 +14,7 @@ function SignIn(props) {
   const passwordRegex = /^.{8,}$/;
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoggedIn, setLoginState] = useState(false);
 
   const [data, setData] = useState({
     email: "",
@@ -37,11 +38,15 @@ function SignIn(props) {
       setErrorMessage("");
       try {
         const url = "http://localhost:8080/sign-in-user";
+        // Axios content header with token
         const res = await axios.post(url, data);
         console.log(res);
         console.log("This is inside Try Block");
         console.log(res.message);
         if (res.status === 200) {
+          localStorage.setItem("token", res.data.data);
+          localStorage.setItem("email", data.email);
+          setLoginState(true);
           navigate("/dashboard");
         }
       } catch (error) {
