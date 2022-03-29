@@ -88,7 +88,7 @@ const RentalForm = () => {
     }
 
     axios
-      .post("http://localhost:2000/applicationdashboardRoute/addapplications", { formValues })
+      .post("http://localhost:8080/applicationdashboardRoute/addapplications", { formValues })
       .then((res) => {
         console.log(res.data.msg);
         alert("All values submit successfully!! ");
@@ -103,16 +103,6 @@ const RentalForm = () => {
 
   return (
     <>
-      <div
-        style={{
-          background: "#4267b2",
-          height: "50px",
-          color: "white",
-          textAlign: "center",
-        }}
-      >
-        <p>Nav bar</p>
-      </div>
       <h4
         style={{
           color: "#4267b2",

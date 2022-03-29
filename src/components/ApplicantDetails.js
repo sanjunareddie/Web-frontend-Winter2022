@@ -11,7 +11,6 @@ import {
   FormControl,
 } from "react-bootstrap";
 import axios from "axios";
-import ApplicationDashboard from "./ApplicationDashboard";
 import { Prev } from "react-bootstrap/esm/PageItem";
 
 const ApplicantDetails = () => {
@@ -53,7 +52,7 @@ const ApplicantDetails = () => {
     e.preventDefault();
   
     axios
-      .put("http://localhost:2000/applicationdashboardRoute/updatestatus", { applicant })
+      .put("http://localhost:8080/applicationdashboardRoute/updatestatus", { applicant })
       .then((res) => {
         console.log(res.data.message);
         alert(" Update successfully");
@@ -67,17 +66,6 @@ const ApplicantDetails = () => {
 
   return (
     <>
-      <div
-        style={{
-          background: "#4267b2",
-          height: "50px",
-          color: "white",
-          textAlign: "center",
-        }}
-      >
-        <p>Nav bar</p>
-      </div>
-
       <Container style={{ padding: "20px" }}>
         <h4
           style={{

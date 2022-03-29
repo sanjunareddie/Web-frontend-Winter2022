@@ -30,7 +30,7 @@ function App() {
       <div>
         <NavBarAfterLogin />
       </div>
-      <div className="App center-signin-signup">
+      <div className="">
         <Routes>
           <Route
             exact
@@ -87,9 +87,9 @@ function App() {
             }
           />
           <Route exact path="/RentalForm" element={<PrivateRoute><RentalForm /></PrivateRoute>} />
-          <Route path="/ViewApplicationStatus" exact element={<PrivateRoute><ViewApplicationStatus /></PrivateRoute>} />
-          <Route path="/UpdateApplicationStatus" exact element={<PrivateRoute><UpdateApplicationStatus /></PrivateRoute>} />
-          <Route path="/ApplicantDetails" exact element={<PrivateRoute><ApplicantDetails /></PrivateRoute>} />
+          <Route exact path="/ViewApplicationStatus" element={<PrivateRoute><ViewApplicationStatus /></PrivateRoute>} />
+          <Route exact path="/UpdateApplicationStatus" element={<PrivateRoute><UpdateApplicationStatus /></PrivateRoute>} />
+          <Route exact path="/ApplicantDetails" element={<PrivateRoute><ApplicantDetails /></PrivateRoute>} />
         </Routes>
       </div>
     </>
