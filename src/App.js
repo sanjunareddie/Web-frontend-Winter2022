@@ -1,4 +1,5 @@
 import "./App.css";
+import './css/extra.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -10,6 +11,10 @@ import Dashboard from "./components/Dashboard";
 import UserProfile from "./components/UserProfile";
 import SavedSearches from "./components/SavedSearches";
 import { isLoggedIn } from "./utils/utility";
+import RentalForm from "./components/RentalForm";
+import ViewApplicationStatus from "./components/ViewApplicationStatus";
+import UpdateApplicationStatus from "./components/UpdateApplicationStatus";
+import ApplicantDetails from "./components/ApplicantDetails";
 
 const PrivateRoute = ({ children }) => {
   return isLoggedIn() ? children : <Navigate to="/sign-in" replace={true} />;
@@ -81,6 +86,10 @@ function App() {
               </PublicRoute>
             }
           />
+          <Route exact path="/RentalForm" element={<PrivateRoute><RentalForm /></PrivateRoute>} />
+          <Route path="/ViewApplicationStatus" exact element={<PrivateRoute><ViewApplicationStatus /></PrivateRoute>} />
+          <Route path="/UpdateApplicationStatus" exact element={<PrivateRoute><UpdateApplicationStatus /></PrivateRoute>} />
+          <Route path="/ApplicantDetails" exact element={<PrivateRoute><ApplicantDetails /></PrivateRoute>} />
         </Routes>
       </div>
     </>
