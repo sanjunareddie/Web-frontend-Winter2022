@@ -52,6 +52,12 @@ function NavBarAfterLogin() {
                 View Application Status
               </NavLink>
             </Nav.Item>
+
+            <Nav.Item className="p-2">
+              <NavLink to="/forum" className="nav-text-color">
+                Forum
+              </NavLink>
+            </Nav.Item>
           </Nav>
 
           <Nav.Item className="ms-auto p-2">
