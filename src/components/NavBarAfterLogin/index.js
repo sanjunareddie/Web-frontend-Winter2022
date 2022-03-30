@@ -52,6 +52,12 @@ function NavBarAfterLogin() {
                 Forum
               </NavLink>
             </Nav.Item>
+
+            <Nav.Item className="p-2">
+              <NavLink to="/houses" className="nav-text-color">
+                Manage Rentals
+              </NavLink>
+            </Nav.Item>
           </Nav>
 
           <Nav.Item className="ms-auto p-2">

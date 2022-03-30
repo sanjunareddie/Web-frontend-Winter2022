@@ -11,11 +11,15 @@ import Dashboard from "./components/Dashboard";
 import UserProfile from "./components/UserProfile";
 import SavedSearches from "./components/SavedSearches";
 import { isLoggedIn } from "./utils/utility";
+import HousesList from "./components/HousesList";
+import AddHouse from "./components/AddHouse";
+import HouseDetail from "./components/HouseDetail";
+import HouseEdit from "./components/HouseEdit";
+import DeleteHouse from "./components/DeleteHouse";
 import RentalForm from "./components/RentalForm";
 import ViewApplicationStatus from "./components/ViewApplicationStatus";
 import UpdateApplicationStatus from "./components/UpdateApplicationStatus";
 import ApplicantDetails from "./components/ApplicantDetails";
-import HouseDetail from "./components/HouseDetail";
 import Forum from "./components/Forum/Forum";
 import NewThread from "./components/Forum/NewThread";
 
@@ -27,9 +31,12 @@ const PublicRoute = ({ children }) => {
   return isLoggedIn() ? <Navigate to="/" replace={true} /> : children;
 };
 
+
+
 function App() {
   return (
     <>
+
       <div>
         <NavBarAfterLogin />
       </div>
@@ -98,6 +105,22 @@ function App() {
               </PublicRoute>
             }
           />
+
+          {/* Houses */}
+          <Route path="/houses" element={ <PrivateRoute>
+            <HousesList />
+            </PrivateRoute>}></Route>
+          <Route path="/add-house" element={<PrivateRoute>
+            <AddHouse />
+            </PrivateRoute>}></Route>
+          <Route path="/house/:id" element={<PrivateRoute><HouseDetail />
+          </PrivateRoute>}></Route>
+          <Route exact path="/house/:id/edit" element={<PrivateRoute>
+            <HouseEdit />
+            </PrivateRoute>}></Route>
+          <Route exact path="/house/:id/delete" element={<PrivateRoute>
+            <DeleteHouse />
+            </PrivateRoute>}></Route>
           <Route
             exact
             path="/RentalForm"
