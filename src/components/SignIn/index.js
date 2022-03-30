@@ -1,3 +1,8 @@
+/**
+ * @author Kushang Arunbhai Mistry (B00870521)
+ * A SignIn component which renders signin task on homepage
+ */
+
 import React from "react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";

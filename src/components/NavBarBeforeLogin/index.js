@@ -1,3 +1,8 @@
+/**
+ * @author Kushang Arunbhai Mistry (B00870521)
+ * A Navbar, after login the user (as of now this is the basic navbar which will be visible)
+ */
+
 import React from "react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";

@@ -1,3 +1,8 @@
+/**
+ * @author Kushang Arunbhai Mistry (B00870521)
+ * A Navbar, before login (however, functionality is for future implementation purposes)
+ */
+
 import React from "react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
