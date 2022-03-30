@@ -51,9 +51,7 @@ const Forum = () => {
                 <tr>
                   <td>{thread.title}</td>
                   <td>
-                    <div>
-                      by <a href="#">{thread.name}</a>
-                    </div>
+                    <div>by {thread.name}</div>
                     <div>{newDate.toDateString()}</div>
                   </td>
                 </tr>
