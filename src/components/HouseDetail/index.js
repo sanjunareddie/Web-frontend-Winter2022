@@ -7,6 +7,7 @@ import { Col, Container, Row, Card, Button } from "react-bootstrap";
 
 const HouseDetail = props => {
     const params = useParams();
+    const navigate = useNavigate();
 
     const initialHouseState = {
 
@@ -129,6 +130,18 @@ const HouseDetail = props => {
                             <div className="form-group m-1 p-1">
                                 <label className="mb-1" htmlFor="phone"><strong>Phone</strong></label>
                                 <p>{currentHouse.phone}</p>
+                            </div>
+
+                            <div>
+                                <Button
+                                    variant="primary"
+                                    size="lg"
+                                    onClick={() => navigate("/RentalForm")}
+                                    className="btn btn-secondary btn-block btn-round"
+                                >
+                                    Apply Now
+                                </Button>
+
                             </div>
 
                         </div>
