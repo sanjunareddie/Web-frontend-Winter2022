@@ -43,7 +43,7 @@ function Dashboard() {
         setInputFlag(false);
       }
     const handleHouseClick = (id) => {
-        navigate("/dashboard/"+id);
+        navigate("/RentalForm");
     }
 
     const handleFilterInput = (event) => {

@@ -108,7 +108,6 @@ const RentalForm = () => {
       >
         Rental Application Form
       </h4>
-
       <Container fluid style={{ padding: "20px" }}>
         <Form>
           <Row>
