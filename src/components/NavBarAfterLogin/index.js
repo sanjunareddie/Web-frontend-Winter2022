@@ -41,12 +41,6 @@ function NavBarAfterLogin() {
             </Nav.Item>
 
             <Nav.Item className="p-2">
-              <NavLink to="/RentalForm" className="nav-text-color">
-                Rental Application Form
-              </NavLink>
-            </Nav.Item>
-
-            <Nav.Item className="p-2">
               <NavLink to="/UpdateApplicationStatus" className="nav-text-color">
                 Update Application Status
               </NavLink>
