@@ -65,9 +65,8 @@ const ViewApplicationStatus = () => {
                 <thead>
                   <tr>
                     <th>Application Number</th>
+                    <th>Applicant Name</th>
                     <th>Applied Date</th>
-                    <th>Location</th>
-                    <th>Rent</th>
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -76,9 +75,8 @@ const ViewApplicationStatus = () => {
                     return (
                       <tr key={index}>
                         <td>{app.applicationID}</td>
+                        <td>{app.fullName}</td>
                         <td>{convertDate(app.applieddate)}</td>
-                        <td>location</td>
-                        <td>rent</td>
                         <td>{app.status}</td>
                         <td>
                           <Button
