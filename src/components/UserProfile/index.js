@@ -24,7 +24,7 @@ function UserProfile() {
 
   useEffect(async () => {
     try {
-      const url = "http://localhost:8080/getOneUserDetails";
+      const url = "https://group12-backend.herokuapp.com/getOneUserDetails";
       const res = await axios.post(url, {
         email: localStorage.getItem("email"),
       });

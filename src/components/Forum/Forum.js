@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Forum = () => {
   let navigate = useNavigate();
-  const apiUrl = "http://localhost:8080/getthread";
+  const apiUrl = "https://group12-backend.herokuapp.com/getthread";
 
   const [threadInfo, setThreadInfo] = useState([]);
 
