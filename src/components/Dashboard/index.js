@@ -1,3 +1,8 @@
+/* 
+  authorName : Sanjuna Konda 
+  email : sn493898@dal.ca
+*/
+
 import React, { useState, useEffect } from "react";
 import {Card, Dropdown, DropdownButton} from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
@@ -37,8 +42,8 @@ function Dashboard() {
         setFilterValue(e)
         setInputFlag(false);
       }
-    const handleHouseClick = () => {
-        navigate("/housedetails");
+    const handleHouseClick = (id) => {
+        navigate("/dashboard/"+id);
     }
 
     const handleFilterInput = (event) => {
@@ -104,7 +109,7 @@ function Dashboard() {
             <Card className="totalCard">
                 {showHouses ? 
                 (<div>{showHouses.map(item => (
-                    <div className="row eachCard" onClick={() => handleHouseClick() } >
+                    <div className="row eachCard" onClick={() => handleHouseClick(showHouses._id) } >
                         <div className="col-sm-3"><Card className='image'><img  src = {houselogo} alt = "logo" /></Card></div>
                         <div className="col-sm-4"><Card className='housedetails'>
                             <span>{item.address}</span>

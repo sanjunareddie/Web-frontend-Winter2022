@@ -15,6 +15,7 @@ import RentalForm from "./components/RentalForm";
 import ViewApplicationStatus from "./components/ViewApplicationStatus";
 import UpdateApplicationStatus from "./components/UpdateApplicationStatus";
 import ApplicantDetails from "./components/ApplicantDetails";
+import HouseDetail from "./components/HouseDetail";
 import Forum from "./components/Forum/Forum";
 import NewThread from "./components/Forum/NewThread";
 
@@ -49,6 +50,15 @@ function App() {
             element={
               <PrivateRoute>
                 <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/dashboard:houseid"
+            element={
+              <PrivateRoute>
+                <HouseDetail />
               </PrivateRoute>
             }
           />
