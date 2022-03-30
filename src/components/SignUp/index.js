@@ -48,7 +48,7 @@ function SignUp() {
     } else {
       setErrorMessage("");
       try {
-        const url = "http://localhost:8080/sign-up-user";
+        const url = "https://group12-backend.herokuapp.com/sign-up-user";
         const res = await axios.post(url, data);
         console.log(res);
         console.log("This is inside Try Block");

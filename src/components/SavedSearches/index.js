@@ -21,7 +21,7 @@ function SavedSearches() {
 
   useEffect(async () => {
     try {
-      const url = "http://localhost:8080/getOneUserDetails";
+      const url = "https://group12-backend.herokuapp.com/getOneUserDetails";
       const res = await axios.post(url, {
         email: localStorage.getItem("email"),
       });
@@ -29,7 +29,7 @@ function SavedSearches() {
         console.log(res.data.users.savedProperties);
         propertiesList = res.data.users.savedProperties;
         try {
-          const url = "http://localhost:8080/getallproperties";
+          const url = "https://group12-backend.herokuapp.com/getallproperties";
           const res = await axios.post(url, {
             idList: JSON.parse(propertiesList),
           });

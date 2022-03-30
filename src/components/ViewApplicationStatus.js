@@ -22,7 +22,7 @@ const ViewApplicationStatus = () => {
 
   const loadApplications = (e) => {
     axios
-      .get("http://localhost:8080/applicationdashboardRoute/applications")
+      .get("https://group12-backend.herokuapp.com/applicationdashboardRoute/applications")
       .then((res) => {
         if (res.data.success) {
           setApplication(res.data.applications);
@@ -35,7 +35,7 @@ const ViewApplicationStatus = () => {
 
   const deleteApplication = (app) => {
     axios
-      .post("http://localhost:8080/applicationdashboardRoute/deleteApplication", { app })
+      .post("https://group12-backend.herokuapp.com/applicationdashboardRoute/deleteApplication", { app })
       .then((res) => {
         alert(" Deleted successfully");
         loadApplications();

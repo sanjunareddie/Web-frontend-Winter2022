@@ -42,7 +42,7 @@ function SignIn(props) {
     } else {
       setErrorMessage("");
       try {
-        const url = "http://localhost:8080/sign-in-user";
+        const url = "https://group12-backend.herokuapp.com/sign-in-user";
         // Axios content header with token
         const res = await axios.post(url, data);
         console.log(res);

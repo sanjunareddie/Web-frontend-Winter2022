@@ -25,7 +25,7 @@ function Dashboard() {
 
     const loadHouses =(e) => {
         axios
-      .get("http://localhost:8080/getallhouses")
+      .get("https://group12-backend.herokuapp.com/getallhouses")
       .then((res) => {
         if (res.data.success) {
           console.log(res.data.houses);

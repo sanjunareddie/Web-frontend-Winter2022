@@ -88,7 +88,7 @@ const RentalForm = () => {
     }
 
     axios
-      .post("http://localhost:8080/applicationdashboardRoute/addapplications", { formValues })
+      .post("https://group12-backend.herokuapp.com/applicationdashboardRoute/addapplications", { formValues })
       .then((res) => {
         alert("All values submit successfully!! ");
       })

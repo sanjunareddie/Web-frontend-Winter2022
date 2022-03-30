@@ -26,7 +26,7 @@ const UpdateApplicationStatus = () => {
 
   const loadApplications = (e) => {
     axios
-      .get("http://localhost:8080/applicationdashboardRoute/applications")
+      .get("https://group12-backend.herokuapp.com/applicationdashboardRoute/applications")
       .then((res) => {
         if (res.data.success) {
           setApplication(res.data.applications);

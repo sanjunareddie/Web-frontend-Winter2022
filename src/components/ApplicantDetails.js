@@ -57,7 +57,7 @@ const ApplicantDetails = () => {
     e.preventDefault();
   
     axios
-      .put("http://localhost:8080/applicationdashboardRoute/updatestatus", { applicant })
+      .put("https://group12-backend.herokuapp.com/applicationdashboardRoute/updatestatus", { applicant })
       .then((res) => {
         console.log(res.data.message);
         alert(" Update successfully");
