@@ -22,6 +22,7 @@ import UpdateApplicationStatus from "./components/UpdateApplicationStatus";
 import ApplicantDetails from "./components/ApplicantDetails";
 import Forum from "./components/Forum/Forum";
 import NewThread from "./components/Forum/NewThread";
+import ThreadReply from "./components/Forum/ThreadReply";
 
 const PrivateRoute = ({ children }) => {
   return isLoggedIn() ? children : <Navigate to="/sign-in" replace={true} />;
@@ -31,12 +32,9 @@ const PublicRoute = ({ children }) => {
   return isLoggedIn() ? <Navigate to="/" replace={true} /> : children;
 };
 
-
-
 function App() {
   return (
     <>
-
       <div>
         <NavBarAfterLogin />
       </div>
@@ -107,20 +105,48 @@ function App() {
           />
 
           {/* Houses */}
-          <Route path="/houses" element={ <PrivateRoute>
-            <HousesList />
-            </PrivateRoute>}></Route>
-          <Route path="/add-house" element={<PrivateRoute>
-            <AddHouse />
-            </PrivateRoute>}></Route>
-          <Route path="/house/:id" element={<PrivateRoute><HouseDetail />
-          </PrivateRoute>}></Route>
-          <Route exact path="/house/:id/edit" element={<PrivateRoute>
-            <HouseEdit />
-            </PrivateRoute>}></Route>
-          <Route exact path="/house/:id/delete" element={<PrivateRoute>
-            <DeleteHouse />
-            </PrivateRoute>}></Route>
+          <Route
+            path="/houses"
+            element={
+              <PrivateRoute>
+                <HousesList />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/add-house"
+            element={
+              <PrivateRoute>
+                <AddHouse />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/house/:id"
+            element={
+              <PrivateRoute>
+                <HouseDetail />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            exact
+            path="/house/:id/edit"
+            element={
+              <PrivateRoute>
+                <HouseEdit />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            exact
+            path="/house/:id/delete"
+            element={
+              <PrivateRoute>
+                <DeleteHouse />
+              </PrivateRoute>
+            }
+          ></Route>
           <Route
             exact
             path="/RentalForm"
@@ -175,6 +201,14 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/thread/:id"
+            element={
+              <PrivateRoute>
+                <ThreadReply />
+              </PrivateRoute>
+            }
+          ></Route>
         </Routes>
       </div>
     </>
