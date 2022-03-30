@@ -1,3 +1,8 @@
+/**
+ * @author Kushang Arunbhai Mistry (B00870521)
+ * A SignUp component which renders registration.
+ */
+
 import React from "react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -26,19 +31,6 @@ function SignUp() {
   const handleChange = ({ target: { name, value } }) => {
     setData((prev) => ({ ...prev, [name]: value }));
   };
-
-  // const handleFirstNameChange = (e) => {
-  //   setFirstName(e.target.value);
-  // };
-  // const handleLastNameChange = (e) => {
-  //   setLastName(e.target.value);
-  // };
-  // const handleEmailChange = (e) => {
-  //   setEmail(e.target.value);
-  // };
-  // const handlePasswordChange = (e) => {
-  //   setPassword(e.target.value);
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

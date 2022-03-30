@@ -1,3 +1,8 @@
+/**
+ * @author Kushang Arunbhai Mistry (B00870521)
+ * A function, which will render all the saved houses / properties by user
+ */
+
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
@@ -30,10 +35,6 @@ function SavedSearches() {
           });
           if (res.status === 200) {
             setSavedProperties(res.data.propertyDetails);
-            console.log(
-              "This properties details: " +
-                JSON.stringify(res.data.propertyDetails)
-            );
           }
         } catch (error) {
           console.log(error);
