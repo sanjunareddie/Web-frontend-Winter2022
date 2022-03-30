@@ -34,6 +34,36 @@ function NavBarAfterLogin() {
                 Dashboard
               </NavLink>
             </Nav.Item>
+
+            <Nav.Item className="p-2">
+              <NavLink to="/RentalForm" className="nav-text-color">
+                Rental Form
+              </NavLink>
+            </Nav.Item>
+
+            <Nav.Item className="p-2">
+              <NavLink to="/UpdateApplicationStatus" className="nav-text-color">
+                Update Application Status
+              </NavLink>
+            </Nav.Item>
+
+            <Nav.Item className="p-2">
+              <NavLink to="/ViewApplicationStatus" className="nav-text-color">
+                View Application Status
+              </NavLink>
+            </Nav.Item>
+
+            <Nav.Item className="p-2">
+              <NavLink to="/forum" className="nav-text-color">
+                Forum
+              </NavLink>
+            </Nav.Item>
+
+            <Nav.Item className="p-2">
+              <NavLink to="/houses" className="nav-text-color">
+                Manage Rentals
+              </NavLink>
+            </Nav.Item>
           </Nav>
 
           <Nav.Item className="ms-auto p-2">

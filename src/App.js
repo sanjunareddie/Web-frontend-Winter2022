@@ -1,4 +1,5 @@
 import "./App.css";
+import "./css/extra.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -15,6 +16,12 @@ import AddHouse from "./components/AddHouse";
 import HouseDetail from "./components/HouseDetail";
 import HouseEdit from "./components/HouseEdit";
 import DeleteHouse from "./components/DeleteHouse";
+import RentalForm from "./components/RentalForm";
+import ViewApplicationStatus from "./components/ViewApplicationStatus";
+import UpdateApplicationStatus from "./components/UpdateApplicationStatus";
+import ApplicantDetails from "./components/ApplicantDetails";
+import Forum from "./components/Forum/Forum";
+import NewThread from "./components/Forum/NewThread";
 
 const PrivateRoute = ({ children }) => {
   return isLoggedIn() ? children : <Navigate to="/sign-in" replace={true} />;
@@ -33,7 +40,7 @@ function App() {
       <div>
         <NavBarAfterLogin />
       </div>
-      <div className="App center-signin-signup">
+      <div className="">
         <Routes>
           <Route
             exact
@@ -50,6 +57,15 @@ function App() {
             element={
               <PrivateRoute>
                 <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/dashboard:houseid"
+            element={
+              <PrivateRoute>
+                <HouseDetail />
               </PrivateRoute>
             }
           />
@@ -105,6 +121,60 @@ function App() {
           <Route exact path="/house/:id/delete" element={<PrivateRoute>
             <DeleteHouse />
             </PrivateRoute>}></Route>
+          <Route
+            exact
+            path="/RentalForm"
+            element={
+              <PrivateRoute>
+                <RentalForm />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/ViewApplicationStatus"
+            element={
+              <PrivateRoute>
+                <ViewApplicationStatus />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/UpdateApplicationStatus"
+            element={
+              <PrivateRoute>
+                <UpdateApplicationStatus />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/ApplicantDetails"
+            element={
+              <PrivateRoute>
+                <ApplicantDetails />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/forum"
+            element={
+              <PrivateRoute>
+                <Forum />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/thread"
+            element={
+              <PrivateRoute>
+                <NewThread />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </div>
     </>
