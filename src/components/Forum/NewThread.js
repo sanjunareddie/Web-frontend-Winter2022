@@ -6,7 +6,7 @@ import axios from "axios";
 
 const NewThread = () => {
   const navigate = useNavigate();
-  const apiUrl = "http://localhost:8080/addthread";
+  const apiUrl = "https://group12-backend.herokuapp.com/addthread";
 
   const handleBack = (e) => {
     e.preventDefault();
