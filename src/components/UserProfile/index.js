@@ -39,8 +39,8 @@ function UserProfile() {
   }, []);
 
   const handleSignOut = () => {
+    navigate("/sign-in", { replace: true });
     localStorage.clear();
-    navigate("/sign-in");
   };
 
   return (
