@@ -28,7 +28,7 @@ function Dashboard() {
       .get("https://group12-backend.herokuapp.com/getallhouses")
       .then((res) => {
         if (res.data.success) {
-          console.log(res.data.houses);
+            console.log(res.data.houses);
           setShowHouses(res.data.houses);
           setHousesList(res.data.houses);
         }
@@ -43,7 +43,7 @@ function Dashboard() {
         setInputFlag(false);
       }
     const handleHouseClick = (id) => {
-        navigate("/RentalForm");
+        navigate("/house/"+id);
     }
 
     const handleFilterInput = (event) => {
@@ -58,7 +58,7 @@ function Dashboard() {
 
     const handleFilterOption = () => {
         if(flag && filtervalue.match("location")) {
-            let filteredHouses = housesList.filter(house => (house.city.toLowerCase().includes(filterInput.toLowerCase())));
+            let filteredHouses = housesList.filter(house => (house.address.city.toLowerCase().includes(filterInput.toLowerCase())));
             setShowHouses(filteredHouses);
         }
         if(flag && filtervalue.match("housetype")) {
@@ -66,11 +66,12 @@ function Dashboard() {
             setShowHouses(filteredHouses);
         }
         if(flag && filtervalue.match("cost")) {
-            let filteredHouses = housesList.filter(house => (house.price.toLowerCase().includes(filterInput.toLowerCase())));
+            let filteredHouses = housesList.filter(house => (house.price == filterInput));
             setShowHouses(filteredHouses);
         }
         if(flag && filtervalue.match("peoplecount")) {
-            let filteredHouses = housesList.filter(house => (house.peoplecount.toLowerCase().includes(filterInput.toLowerCase())));
+            let filteredHouses = housesList.filter(house => (house.people_count == filterInput));
+            console.log(filteredHouses);
             setShowHouses(filteredHouses);
         }
         if(!flag && filtervalue.match("")) {
@@ -109,10 +110,10 @@ function Dashboard() {
             <Card className="totalCard">
                 {showHouses ? 
                 (<div>{showHouses.map(item => (
-                    <div className="row eachCard" onClick={() => handleHouseClick(showHouses._id) } >
-                        <div className="col-sm-3"><Card className='image'><img  src = {houselogo} alt = "logo" /></Card></div>
+                    <div className="row eachCard" onClick={() => handleHouseClick(item._id) } >
+                        <div className="col-sm-3"><Card className='image'><img src={item.selectedFile} alt = "logo" /></Card></div>
                         <div className="col-sm-4"><Card className='housedetails'>
-                            <span>{item.address}</span>
+                            <span>{item.address.street},{item.address.city},{item.address.province}</span>
                             <br />
                             <span>CA$ {item.price}/Month</span>
                             <br />
