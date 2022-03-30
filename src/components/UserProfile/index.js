@@ -1,3 +1,8 @@
+/**
+ * @author Kushang Arunbhai Mistry (B00870521)
+ * A user profile, having basic information of the user
+ */
+
 import React from "react";
 import { useEffect, useState } from "react";
 
