@@ -1,3 +1,8 @@
+/* 
+  authorName : Vishvesh Naik 
+  email : vishvesh@dal.ca
+*/
+
 import "./Card.css";
 
 function Card(props) {
