@@ -43,7 +43,7 @@ const HouseDetail = props => {
                 selectedFile: response.data.selectedFile,
                 street: response.data.address.street,
                 city: response.data.address.city,
-                people: response.data.people,
+                people: response.data.people_count,
                 province: response.data.address.province,
                 category: response.data.category,
                 rooms: response.data.rooms,
