@@ -1,13 +1,13 @@
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import classes from "./Forum.module.css";
 import axios from "axios";
 
 const Forum = () => {
   let navigate = useNavigate();
-  const apiUrl = "https://group12-backend.herokuapp.com/getthread";
+  const apiUrl = "http://localhost:8080/getthread";
 
   const [threadInfo, setThreadInfo] = useState([]);
 
@@ -49,7 +49,11 @@ const Forum = () => {
             return (
               <tbody>
                 <tr>
-                  <td>{thread.title}</td>
+                  <td>
+                    <NavLink to={"/thread/" + thread._id}>
+                      {thread.title}
+                    </NavLink>
+                  </td>
                   <td>
                     <div>by {thread.name}</div>
                     <div>{newDate.toDateString()}</div>

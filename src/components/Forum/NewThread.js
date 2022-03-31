@@ -125,9 +125,18 @@ const NewThread = () => {
 
   return (
     <div className="container table-div">
-      <div className="card text-center">
+      <div
+        className="card text-center"
+        style={{ width: "45%", justifyContent: "center" }}
+      >
         <div className="card-body">
-          <h5 style={{ color: "#FFF", background: "#8bbabb", padding: "10px" }}>
+          <h5
+            style={{
+              color: "#FFF",
+              background: "#4267b2",
+              padding: "10px",
+            }}
+          >
             Thread Information
           </h5>
         </div>
@@ -136,14 +145,15 @@ const NewThread = () => {
         </div> */}
         <div className="card-body">
           <Form>
-            {/* <div className="mb-3"> */}
-            <input
-              type="text"
-              name="title"
-              placeholder="Title"
-              value={threadInfo.title}
-              onChange={handleChange}
-            />
+            <div className="mb-3">
+              <input
+                type="text"
+                name="title"
+                placeholder="Title"
+                value={threadInfo.title}
+                onChange={handleChange}
+              />
+            </div>
             {/* <p style={{ color: "red" }}>{formErrors.fullname}</p> */}
             {/* </div> */}
             <div className="mb-3">
@@ -157,8 +167,8 @@ const NewThread = () => {
               {/* <p style={{ color: "red" }}>{formErrors.email}</p> */}
             </div>
             <div className="mb-3">
-              <textarea
-                type="text"
+              <input
+                type="textarea"
                 name="description"
                 placeholder="Description"
                 value={threadInfo.description}
