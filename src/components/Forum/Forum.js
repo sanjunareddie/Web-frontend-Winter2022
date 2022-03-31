@@ -1,3 +1,8 @@
+/* 
+  authorName : Vishvesh Naik 
+  email : vishvesh@dal.ca
+*/
+
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useNavigate, NavLink } from "react-router-dom";
@@ -7,14 +12,13 @@ import axios from "axios";
 
 const Forum = () => {
   let navigate = useNavigate();
-  const apiUrl = "http://localhost:8080/getthread";
+  const apiUrl = "https://group12-backend.herokuapp.com/getthread";
 
   const [threadInfo, setThreadInfo] = useState([]);
 
   const onClickHandler = () => {
     console.log("clicked");
     navigate("/thread");
-    // return <NewThread />;
   };
 
   useEffect(() => {
@@ -26,13 +30,17 @@ const Forum = () => {
   return (
     <>
       <div className="container my-3">
-        <div className={classes.button}>
-          <Button className="btn btn-lg btn-primary" onClick={onClickHandler}>
+        <div className={classes.button} style={{ paddingTop: "0.5rem" }}>
+          <Button
+            className="btn btn-lg btn-primary"
+            onClick={onClickHandler}
+            style={{ backgroundColor: "#4267b2" }}
+          >
             New Thread
           </Button>
         </div>
-        <Table bordered hover responsive>
-          <thead>
+        <Table bordered responsive>
+          <thead style={{ backgroundColor: "#c7c7c7" }}>
             <tr>
               <th scope="col" className="topic-col">
                 Topics
@@ -51,7 +59,7 @@ const Forum = () => {
                 <tr>
                   <td>
                     <NavLink to={"/thread/" + thread._id}>
-                      {thread.title}
+                      <p style={{ color: "black" }}>{thread.title}</p>
                     </NavLink>
                   </td>
                   <td>
