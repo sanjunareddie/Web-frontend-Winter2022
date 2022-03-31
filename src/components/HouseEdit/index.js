@@ -36,6 +36,8 @@ const EditHouse = props => {
     };
     const [currentHouse, setCurrentHouse] = useState(initialHouseState);
     const [message, setMessage] = useState("");
+    const [errors, SetErrors] = useState({});
+
     const getHouse = async id => {
         console.log("inside get");
         var house = await HouseDataService.get(id)
@@ -53,7 +55,7 @@ const EditHouse = props => {
                 selectedFile: response.data.selectedFile,
                 street: response.data.address.street,
                 city: response.data.address.city,
-                people: response.data.address.people,
+                people: response.data.people_count,
                 province: response.data.address.province,
                 category: response.data.category,
                 rooms: response.data.rooms,
@@ -71,15 +73,98 @@ const EditHouse = props => {
         setCurrentHouse({ ...currentHouse, [name]: value });
     };
 
-    const updateHouse = () => {
-        HouseDataService.update(params.id, currentHouse)
-            .then(response => {
-                setMessage("The tutorial was updated successfully!");
-                navigate("/houses")
-            })
-            .catch(e => {
-                console.log(e);
-            });
+    const handleValidation = () => {
+        let formIsValid = true;
+
+        var local = {};
+
+        if (!currentHouse.title) {
+            formIsValid = false;
+            local = { ...local, title: "Title cannot be empty." }
+        }
+
+        if (!currentHouse.description) {
+            formIsValid = false;
+
+            local = { ...local, description: "Description cannot be empty." }
+        }
+
+        if (!currentHouse.street) {
+            formIsValid = false;
+            local = { ...local, street: "Street cannot be empty." }
+        }
+
+        if (!currentHouse.city) {
+            formIsValid = false;
+            local = { ...local, city: "City cannot be empty." }
+        }
+
+        if (!currentHouse.province) {
+            formIsValid = false;
+            local = { ...local, province: "Province cannot be empty." }
+        }
+
+        if (!currentHouse.people) {
+            formIsValid = false;
+            local = { ...local, people: "People cannot be empty." };
+        }
+
+        if (!currentHouse.bathrooms) {
+            formIsValid = false;
+            local = { ...local, bathrooms: "Bathrooms cannot be empty." }
+        }
+
+        if (!currentHouse.price) {
+            formIsValid = false;
+            local = { ...local, price: "Price cannot be empty." }
+        }
+
+        if (currentHouse.price && !/^\d+$/.test(currentHouse.price)) {
+            formIsValid = false;
+            local = { ...local, price: "Please provide a numeric price." }
+        }
+
+        if (!currentHouse.email) {
+            formIsValid = false;
+            local = { ...local, email: "Email cannot be empty." }
+        }
+
+        if (currentHouse.email && !/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(currentHouse.email)) {
+            formIsValid = false;
+            local = { ...local, email: "Please provide a correct email." }
+        }
+
+        if (!currentHouse.phone) {
+            formIsValid = false;
+            local = { ...local, phone: "Phone cannot be empty." }
+        }
+
+        if (currentHouse.phone && !/^\d+$/.test(currentHouse.phone)) {
+            formIsValid = false;
+            local = { ...local, phone: "Please provide a correct phone number with digits only." }
+        }
+
+        SetErrors(local);
+        return formIsValid;
+    }
+
+    const updateHouse = (e) => {
+        e.preventDefault();
+
+        if (!handleValidation()) {
+            alert("errors");
+            console.log(errors);
+        }
+        else {
+            HouseDataService.update(params.id, currentHouse)
+                .then(response => {
+                    setMessage("The tutorial was updated successfully!");
+                    navigate("/houses")
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        }
     };
 
     return (
@@ -103,6 +188,7 @@ const EditHouse = props => {
                                     onChange={handleInputChange}
                                     name="title"
                                 />
+                                <span style={{ color: "red" }}>{errors["title"]}</span>
                             </div>
                             <div className="form-group m-3 p-1">
                                 <label className="mb-1" htmlFor="description">Description</label>
@@ -115,6 +201,7 @@ const EditHouse = props => {
                                     onChange={handleInputChange}
                                     name="description"
                                 />
+                                <span style={{ color: "red" }}>{errors["description"]}</span>
                             </div>
 
                             <div className="form-group m-3 p-1">
@@ -135,6 +222,7 @@ const EditHouse = props => {
                                     onChange={handleInputChange}
                                     name="street"
                                 />
+                                <span style={{ color: "red" }}>{errors["street"]}</span>
                             </div>
 
                             <div className="form-group m-3 p-1">
@@ -148,6 +236,7 @@ const EditHouse = props => {
                                     onChange={handleInputChange}
                                     name="city"
                                 />
+                                <span style={{ color: "red" }}>{errors["city"]}</span>
                             </div>
 
                             <div className="form-group m-3 p-1">
@@ -161,6 +250,7 @@ const EditHouse = props => {
                                     onChange={handleInputChange}
                                     name="province"
                                 />
+                                <span style={{ color: "red" }}>{errors["province"]}</span>
                             </div>
 
                         </div>
@@ -197,6 +287,7 @@ const EditHouse = props => {
                                     onChange={handleInputChange}
                                     name="people"
                                 />
+                                <span style={{ color: "red" }}>{errors["people"]}</span>
                             </div>
 
                             <div className="form-group m-3 p-1">
@@ -210,6 +301,7 @@ const EditHouse = props => {
                                     onChange={handleInputChange}
                                     name="bathrooms"
                                 />
+                                <span style={{ color: "red" }}>{errors["bathrooms"]}</span>
                             </div>
 
                             <div className="form-group m-3 p-1">
@@ -223,6 +315,7 @@ const EditHouse = props => {
                                     onChange={handleInputChange}
                                     name="price"
                                 />
+                                <span style={{ color: "red" }}>{errors["price"]}</span>
                             </div>
 
                             <div className="form-group m-3 p-1">
@@ -236,6 +329,7 @@ const EditHouse = props => {
                                     onChange={handleInputChange}
                                     name="email"
                                 />
+                                <span style={{ color: "red" }}>{errors["email"]}</span>
                             </div>
 
                             <div className="form-group m-3 p-1">
@@ -249,6 +343,7 @@ const EditHouse = props => {
                                     onChange={handleInputChange}
                                     name="phone"
                                 />
+                                <span style={{ color: "red" }}>{errors["phone"]}</span>
                             </div>
 
                             <Button className="float-end mt-2" variant="success" onClick={updateHouse}>Update</Button>
