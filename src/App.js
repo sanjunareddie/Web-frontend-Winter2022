@@ -23,6 +23,9 @@ import ApplicantDetails from "./components/ApplicantDetails";
 import Forum from "./components/Forum/Forum";
 import NewThread from "./components/Forum/NewThread";
 import ThreadReply from "./components/Forum/ThreadReply";
+import Reviews from "./components/Reviews";
+import AddReview from "./components/AddReview";
+import EditReview from "./components/EditReview";
 
 const PrivateRoute = ({ children }) => {
   return isLoggedIn() ? children : <Navigate to="/sign-in" replace={true} />;
@@ -147,9 +150,41 @@ function App() {
               </PrivateRoute>
             }
           ></Route>
+
+          {/* Reviews */}
           <Route
             exact
-            path="/RentalForm"
+            path="/reviews"
+            element={
+              <PrivateRoute>
+                <Reviews />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            exact
+            path="/house/:id/add-review"
+            element={
+              <PrivateRoute>
+                <AddReview />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            exact
+            path="/house/:id/edit-review"
+            element={
+              <PrivateRoute>
+                <EditReview />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            exact
+            path="/RentalForm/:id"
             element={
               <PrivateRoute>
                 <RentalForm />
