@@ -133,14 +133,17 @@ const HouseDetail = props => {
                             </div>
 
                             <div>
-                                <Button
+                                {(currentHouse.email != localStorage.email) ? <Button
                                     variant="primary"
                                     size="lg"
-                                    onClick={() => navigate("/RentalForm")}
+                                    onClick={() => navigate("/RentalForm/" + params.id)}
                                     className="btn btn-secondary btn-block btn-round"
                                 >
                                     Apply Now
                                 </Button>
+                                :
+                                ""}
+
 
                             </div>
 

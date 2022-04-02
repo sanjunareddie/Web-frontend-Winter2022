@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React from 'react';
 import HouseDataService from "../../services/HouseService";
-import {  Container, Row, Card, Button } from "react-bootstrap";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { Container, Row, Card, Button } from "react-bootstrap";
+import { BsPlusLg, BsPencilSquare } from "react-icons/bs";
 
-const HousesList = () => {
+
+const Reviews = () => {
     const navigate = useNavigate();
     const [houses, setHouses] = useState([]);
 
     useEffect(() => {
-        retrieveHouses();
+        retrieveHousesLived();
     }, []);
 
-    const retrieveHouses = () => {
-        HouseDataService.getAll(localStorage.email)
+    const retrieveHousesLived = () => {
+        HouseDataService.getUserLivedHouses(localStorage.email)
             .then(response => {
                 setHouses(response.data);
-                console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
@@ -32,14 +34,9 @@ const HousesList = () => {
         <Container className="mt-4">
             <Row>
                 <div className="col-lg-12 float-end">
-                    <h2 className="text-secondary Helvetica">House Listings</h2>
+                    <h2 className="text-secondary Helvetica">Previously Lived-In Houses</h2>
                 </div>
 
-            </Row>
-            <Row className="my-1">
-                <div className="col-lg-12">
-                    <Button className="float-end" variant="success" onClick={() => navigate("/add-house")}>Add New</Button>
-                </div>
             </Row>
             <Row>
                 {houses &&
@@ -55,8 +52,9 @@ const HousesList = () => {
                                         {house.description}
                                     </Card.Text>
 
-                                    <Button onClick={() => navigate("/house/" + house._id + "/edit")} className="pull-left mr-3" variant="primary">Edit</Button>
-                                    <Button onClick={() => navigate("/house/" + house._id + "/delete")} className="float-end" variant="danger">Delete</Button>
+                                    <h5>Review</h5>
+                                    <Button onClick={() => navigate("/house/" + house._id + "/add-review")} className="pull-left mr-3" variant="primary"><BsPlusLg /></Button>
+                                    <Button onClick={() => navigate("/house/" + house._id + "/edit-review")} className="float-end" variant="warning"><BsPencilSquare /></Button>
                                 </Card.Body>
                             </Card>
 
@@ -67,4 +65,5 @@ const HousesList = () => {
         </Container>
     );
 };
-export default HousesList;
+
+export default Reviews;
