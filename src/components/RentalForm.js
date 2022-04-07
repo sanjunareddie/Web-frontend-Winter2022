@@ -24,6 +24,7 @@ const RentalForm = () => {
     postalcode: "",
     noofpeople: "",
     date: "",
+    house_id: params.id,
     house_email: state?.emailAddress,
   };
   const [formValues, setFormValues] = useState(intialValues);
@@ -38,6 +39,7 @@ const RentalForm = () => {
     postalcode,
     noofpeople,
     date,
+    house_id,
     house_email,
   } = formValues;
 
