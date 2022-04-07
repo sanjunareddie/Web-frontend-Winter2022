@@ -27,12 +27,10 @@ const NewThread = () => {
     const newData = { ...threadInfo };
     newData[e.target.id] = e.target.value;
     setThreadInfo(newData);
-    console.log(e.target);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(threadInfo);
     axios
       .post(apiUrl, {
         title: threadInfo.title,
