@@ -46,7 +46,7 @@ function Dashboard() {
   };
 
     const handleSaveProperty = (id) => {
-
+      
     }
 
     const handleFilterInput = (event) => {
@@ -119,9 +119,9 @@ function Dashboard() {
                 {showHouses.length>0 ? 
                 (<div><h2 className="heading" variant="primary">{filtervalue.match("")? (<span>List of properties</span>): (<span>Search results</span>)}</h2>
                 <div>{showHouses.map(item => (
-                    <div className="row propertyCard" onClick={() => handleHouseClick(item._id) } >
+                    <div className="row propertyCard" onClick={() => handleHouseClick(item._id, item.email) }>
                         <div className="col-sm-3"><Card className='image'><img src={item.selectedFile} alt = "logo" /><h6>House preview</h6></Card></div>
-                        <div className="col-sm-3"><Card className='housedetails'>
+                        <div className="col-sm-3" ><Card className='housedetails'>
                             <span className="househeading">{item.address.street},{item.address.city},{item.address.province}</span>
                             <br />
                             <span>CA$ {item.price}/Month</span>
@@ -140,7 +140,7 @@ function Dashboard() {
                                 </Card>
                         </div>
                         <div className="col-sm-2">
-                            <Button variant="success saveproperty" onClick={handleSaveProperty(item._id)}>Save property</Button>
+                            <Button variant="success saveproperty" onClick={() => handleSaveProperty(item._id)}>Save property</Button>
                         </div>   
                     </div>
                 ))}  </div></div>): 
