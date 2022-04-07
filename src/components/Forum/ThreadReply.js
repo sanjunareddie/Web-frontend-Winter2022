@@ -32,7 +32,7 @@ const ThreadReply = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const r = document.getElementById("reply").value.trim();
-    if (r != "") {
+    if (r !== "") {
       axios
         .post("https://group12-backend.herokuapp.com/thread/addThreadReply", {
           replyDesc: r,
