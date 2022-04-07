@@ -1,7 +1,7 @@
 import axios from "axios";
 export default axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://group12-backend.herokuapp.com/api",
   headers: {
-    "Content-type": "application/json"
-  }
+    "Content-type": "application/json",
+  },
 });

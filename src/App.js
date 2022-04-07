@@ -26,9 +26,19 @@ import ThreadReply from "./components/Forum/ThreadReply";
 import Reviews from "./components/Reviews";
 import AddReview from "./components/AddReview";
 import EditReview from "./components/EditReview";
+import ForgotPasswordEmail from "./components/forgotPasswordEmail";
+import EnterNewPassword from "./components/enterNewPassword";
+import CheckMail from "./components/CheckMail";
 
 const PrivateRoute = ({ children }) => {
-  return isLoggedIn() ? children : <Navigate to="/sign-in" replace={true} />;
+  return isLoggedIn() ? (
+    <>
+      <NavBarAfterLogin />
+      {children}
+    </>
+  ) : (
+    <Navigate to="/sign-in" replace={true} />
+  );
 };
 
 const PublicRoute = ({ children }) => {
@@ -38,9 +48,6 @@ const PublicRoute = ({ children }) => {
 function App() {
   return (
     <>
-      <div>
-        <NavBarAfterLogin />
-      </div>
       <div className="">
         <Routes>
           <Route
@@ -103,6 +110,36 @@ function App() {
             element={
               <PublicRoute>
                 <SignUp />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            exact
+            path="/forgot-password"
+            element={
+              <PublicRoute>
+                <ForgotPasswordEmail />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            exact
+            path="/check-mail"
+            element={
+              <PublicRoute>
+                <CheckMail />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            exact
+            path="/new-password/:email"
+            element={
+              <PublicRoute>
+                <EnterNewPassword />
               </PublicRoute>
             }
           />
