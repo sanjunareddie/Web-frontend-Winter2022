@@ -11,7 +11,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-
 const RentalForm = () => {
   const navigate = useNavigate();
   const params = useParams();
@@ -24,11 +23,11 @@ const RentalForm = () => {
     postalcode: "",
     noofpeople: "",
     date: "",
+    house_id: params.id,
   };
   const [formValues, setFormValues] = useState(intialValues);
 
-  useEffect(() => {
-  }, [params.id]);
+  useEffect(() => {}, [params.id]);
 
   const {
     fullName,
@@ -38,7 +37,7 @@ const RentalForm = () => {
     postalcode,
     noofpeople,
     date,
-    house_id
+    house_id,
   } = formValues;
 
   const handleChange = (e) => {
@@ -95,10 +94,12 @@ const RentalForm = () => {
       return alert("Date field should be valid one!");
     }
 
-    formValues.house_id = params.id
-
+    console.log("id :", house_id);
     axios
-      .post("https://group12-backend.herokuapp.com/applicationdashboardRoute/addapplications", { formValues })
+      .post(
+        "https://group12-backend.herokuapp.com/applicationdashboardRoute/addapplications",
+        { formValues }
+      )
       .then((res) => {
         alert("All values submit successfully!! ");
       })
