@@ -58,7 +58,7 @@ const ViewApplicationStatus = () => {
       </h4>
 
       <Container fluid style={{ padding: "20px" }}>
-        {application.length !== 0 ? (
+        {application.length !==0  ? (
           <>
             <div style={{ margin: "20px" }}>
               <table className="table table-hover">
@@ -71,18 +71,27 @@ const ViewApplicationStatus = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {application.map((app, index) => {
+                  {/* {application.filter(emailID => emailID.email===localStorage.email).map((filteredEmail, index) => {
+                      return(
+                        <tr key={index}>
+                          <td>{filteredEmail.email}</td>
+                          <td>{filteredEmail.applicationID}</td>
+                          <td>{filteredEmail.fullName}</td>
+                          <td>{convertDate(filteredEmail.applieddate)}</td>
+                        </tr>
+                      );})} */}
+                  {application.filter(emailID => emailID.email===localStorage.email).map((filteredEmail, index) => {
                     return (
                       <tr key={index}>
-                        <td>{app.applicationID}</td>
-                        <td>{app.fullName}</td>
-                        <td>{convertDate(app.applieddate)}</td>
-                        <td>{app.status}</td>
+                        <td>{filteredEmail.applicationID}</td>
+                        <td>{filteredEmail.fullName}</td>
+                        <td>{convertDate(filteredEmail.applieddate)}</td>
+                        <td>{filteredEmail.status}</td>
                         <td>
                           <Button
                             variant="primary"
                             size="sm"
-                            onClick={() => deleteApplication(app)}
+                            onClick={() => deleteApplication(filteredEmail)}
                             className="btn btn-secondary btn-block btn-round"
                           >
                             Delete

@@ -63,13 +63,13 @@ const UpdateApplicationStatus = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {application.map((app, index) => {
+                {application.filter(emailID => emailID.email===localStorage.email).map((filteredEmail, index) => {
                     return (
-                      <tr key={index} onClick={() => handleClick(app)}>
-                        <td>{app.applicationID}</td>
-                        <td>{app.fullName}</td>
-                        <td>{convertDate(app.applieddate)}</td>
-                        <td>{app.status}</td>
+                      <tr key={index} onClick={() => handleClick(filteredEmail)}>
+                        <td>{filteredEmail.applicationID}</td>
+                        <td>{filteredEmail.fullName}</td>
+                        <td>{convertDate(filteredEmail.applieddate)}</td>
+                        <td>{filteredEmail.status}</td>
                       </tr>
                     );
                   })}
