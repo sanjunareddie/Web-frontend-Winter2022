@@ -81,7 +81,7 @@ function UserProfile() {
     } else {
       setErrorMessage("");
       try {
-        const url = "http://localhost:8080/updateUserProfile";
+        const url = "https://group12-backend.herokuapp.com/updateUserProfile";
         const res = await axios.post(url, data);
         console.log(res);
         console.log(res.message);

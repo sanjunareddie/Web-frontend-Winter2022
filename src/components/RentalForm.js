@@ -100,7 +100,7 @@ const RentalForm = () => {
     formValues.house_email = state?.emailAddress;
     console.log("formValues :", formValues);
     axios
-      .post("http://localhost:3000/applicationdashboardRoute/addapplications", {
+      .post("https://group12-backend.herokuapp.com/applicationdashboardRoute/addapplications", {
         formValues,
       })
       .then((res) => {

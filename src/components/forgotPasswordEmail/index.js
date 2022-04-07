@@ -35,7 +35,8 @@ function ForgotPasswordEmail() {
     } else {
       setErrorMessage("");
       try {
-        const url = "http://localhost:8080/forgetPasswordAuthenticate";
+        const url =
+          "https://group12-backend.herokuapp.com/forgetPasswordAuthenticate";
         const res = await axios.post(url, data);
         if (res.status === 200 && res.data.success) {
           navigate("/check-mail");

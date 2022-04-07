@@ -18,7 +18,7 @@ var propertiesList = [];
 
 function SavedSearches() {
   const [savedProperties, setSavedProperties] = useState([]);
-
+  console.log("savedProperties", savedProperties);
   useEffect(async () => {
     try {
       const url = "https://group12-backend.herokuapp.com/getOneUserDetails";
@@ -31,8 +31,9 @@ function SavedSearches() {
         try {
           const url = "https://group12-backend.herokuapp.com/getallproperties";
           const res = await axios.post(url, {
-            idList: JSON.parse(propertiesList),
+            idList: propertiesList,
           });
+          console.log("res", res);
           if (res.status === 200) {
             setSavedProperties(res.data.propertyDetails);
           }
@@ -62,13 +63,13 @@ function SavedSearches() {
                     style={{ width: "15rem" }}
                     className="house-card-margin"
                   >
-                    <Card.Img variant="top" src={House1} />
+                    <Card.Img variant="top" src={property.selectedFile} />
                     <Card.Body>
                       <Card.Title>{property.title}</Card.Title>
                       <Row>
                         <Col>
                           <Card.Text style={{ marginBottom: "0.4rem" }}>
-                            {property.type}
+                            {property.rooms}
                           </Card.Text>
                         </Col>
                         <Col>
@@ -78,10 +79,10 @@ function SavedSearches() {
                         </Col>
                       </Row>
                       <Card.Text style={{ marginBottom: "0.5rem" }}>
-                        {property.address1}
+                        {property.address.street}
                       </Card.Text>
                       <Card.Text style={{ marginBottom: "1rem" }}>
-                        {property.address2}
+                      {property.address.city} {property.address.province}
                       </Card.Text>
                       <Button variant="primary">Explore more</Button>
                     </Card.Body>

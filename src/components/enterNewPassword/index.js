@@ -41,7 +41,7 @@ function EnterNewPassword() {
     } else {
       setErrorMessage("");
       try {
-        const url = "http://localhost:8080/changePassword";
+        const url = "https://group12-backend.herokuapp.com/changePassword";
         console.log("data", data);
         const res = await axios.post(url, data);
         if (res.status === 200 && res.data.success) {
