@@ -14,13 +14,20 @@
     margin: 10px;
 }
 
+.heading {
+    text-align: left;
+    margin-left: 20px;
+    text-decoration: underline;
+    color: #4424D6;
+}
+
 .searchinput {
     margin-left: 10px;
     width: 100%;
 }
 
-.eachCard {
-    width:70%;
+.propertyCard {
+    width:80%;
     height:fit-content;
     background:#eceff1;
     text-align:center;
@@ -32,15 +39,15 @@
     margin-bottom: 10px;
 }
 
-.eachCard:hover{
+.propertyCard:hover{
     transform: scale(0.9);
 }
 
 .image {
-    width: 160px;
-  height: 100px;
-float: left;
-margin-top: 10px;
+    width: 190px;
+    height: 110px;
+    float: left;
+    margin-top: 10px;
 }
 
 .housedetails {
@@ -64,8 +71,28 @@ margin-top: 10px;
     font-size: large;
 }
 
+.nohouses {
+    width:95%;
+    height:fit-content;
+    background:#eceff1;
+    text-align:center;
+    box-shadow: 2px 3px #888888;
+    border-radius: 5px;
+    padding: 30px;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.saveproperty {
+    text-align: center;
+    margin-top: 40%;
+}
 @media screen and (max-width: 810px) {
-    .eachCard {
+    .propertyCard {
+        width: 100 !important;
+    }
+    .nohouses {
         width: 100 !important;
     }
 }

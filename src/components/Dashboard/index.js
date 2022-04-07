@@ -4,10 +4,10 @@
 */
 
 import React, { useState, useEffect } from "react";
-import { Card, Dropdown, DropdownButton } from "react-bootstrap";
+import {Card, Dropdown, DropdownButton, Button} from 'react-bootstrap';
+import axios from 'axios';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
-import axios from "axios";
 import houselogo from "../../Resources/House 02.jpg";
 import "../../css/Dashboard.css";
 
@@ -45,37 +45,31 @@ function Dashboard() {
     navigate("/house/" + id, { state: { email } });
   };
 
-  const handleFilterInput = (event) => {
-    if (event.target.value && filtervalue.match("city")) {
-      let filteredHouses = housesList.filter((house) =>
-        house.address.city
-          .toLowerCase()
-          .includes(event.target.value.toLowerCase())
-      );
-      setShowHouses(filteredHouses);
+    const handleSaveProperty = (id) => {
+      
     }
-    if (event.target.value && filtervalue.match("housetype")) {
-      let filteredHouses = housesList.filter((house) =>
-        house.rooms.toLowerCase().includes(event.target.value.toLowerCase())
-      );
-      setShowHouses(filteredHouses);
-    }
-    if (event.target.value && filtervalue.match("cost")) {
-      let filteredHouses = housesList.filter(
-        (house) => house.price == event.target.value
-      );
-      setShowHouses(filteredHouses);
-    }
-    if (event.target.value && filtervalue.match("peoplecount")) {
-      let filteredHouses = housesList.filter(
-        (house) => house.people_count == event.target.value
-      );
-      setShowHouses(filteredHouses);
-    }
-    if (!event.target.value && filtervalue.match("")) {
-      setShowHouses(housesList);
-    }
-  };
+
+    const handleFilterInput = (event) => {
+        if(event.target.value && filtervalue.match("city")) {
+            let filteredHouses = housesList.filter(house => (house.address.city.toLowerCase().includes(event.target.value.toLowerCase())));
+            setShowHouses(filteredHouses);
+        }
+        if(event.target.value && filtervalue.match("housetype")) {
+            let filteredHouses = housesList.filter(house => (house.rooms.toLowerCase().includes(event.target.value.toLowerCase())));
+            setShowHouses(filteredHouses);
+        }
+        if(event.target.value && filtervalue.match("cost")) {
+            let filteredHouses = housesList.filter(house => (house.price == event.target.value));
+            setShowHouses(filteredHouses);
+        }
+        if(event.target.value && filtervalue.match("peoplecount")) {
+            let filteredHouses = housesList.filter(house => (house.people_count == event.target.value));
+            setShowHouses(filteredHouses);
+        }
+        if(!event.target.value && filtervalue.match("")) {
+            setShowHouses(housesList);
+        }
+    };
 
   const token = localStorage.getItem("token");
 
@@ -121,57 +115,39 @@ function Dashboard() {
           </div>
         </div>
         <div className="row">
-          <Card className="totalCard">
-            {showHouses ? (
-              <div>
-                {showHouses.map((item) => (
-                  <div
-                    className="row eachCard"
-                    onClick={() => handleHouseClick(item._id, item.email)}
-                  >
-                    <div className="col-sm-3">
-                      <Card className="image">
-                        <img src={item.selectedFile} alt="logo" />
-                      </Card>
+            <Card className="totalCard">
+                {showHouses.length>0 ? 
+                (<div><h2 className="heading" variant="primary">{filtervalue.match("")? (<span>List of properties</span>): (<span>Search results</span>)}</h2>
+                <div>{showHouses.map(item => (
+                    <div className="row propertyCard" onClick={() => handleHouseClick(item._id, item.email) }>
+                        <div className="col-sm-3"><Card className='image'><img src={item.selectedFile} alt = "logo" /><h6>House preview</h6></Card></div>
+                        <div className="col-sm-3" ><Card className='housedetails'>
+                            <span className="househeading">{item.address.street},{item.address.city},{item.address.province}</span>
+                            <br />
+                            <span>CA$ {item.price}/Month</span>
+                            <br />
+                            <span>Type of house: {item.rooms}</span>
+                            <br />
+                            <span>Number of people: {item.people_count}</span>
+                            </Card></div>
+                        <div className="col-sm-4">
+                            <Card className='renterdetails'>
+                                <span className="househeading">Renter Contact details</span>
+                                <br />
+                                <span>Mailing address: <span className="emailstyle">{item.email}</span></span>
+                                <br />
+                                <span>Contact number: {item.phone}</span>
+                                </Card>
+                        </div>
+                        <div className="col-sm-2">
+                            <Button variant="success saveproperty" onClick={() => handleSaveProperty(item._id)}>Save property</Button>
+                        </div>   
                     </div>
-                    <div className="col-sm-4">
-                      <Card className="housedetails">
-                        <span className="househeading">
-                          {item.address.street},{item.address.city},
-                          {item.address.province}
-                        </span>
-                        <br />
-                        <span>CA$ {item.price}/Month</span>
-                        <br />
-                        <span>Type of house: {item.rooms}</span>
-                      </Card>
-                    </div>
-                    <div className="col-sm-5">
-                      <Card className="renterdetails">
-                        <span className="househeading">
-                          Renter Contact details
-                        </span>
-                        <br />
-                        <span>
-                          Mailing address:{" "}
-                          <span className="emailstyle">{item.email}</span>
-                        </span>
-                        <br />
-                        <span>Contact number: {item.phone}</span>
-                      </Card>
-                    </div>
-                  </div>
-                ))}{" "}
-              </div>
-            ) : (
-              <Card>
-                <span>
-                  No houses found for this filter, kindly choose some other
-                  filter
-                </span>
-              </Card>
-            )}
-          </Card>
+                ))}  </div></div>): 
+                <Card className="nohouses">
+                    <span>No houses found for this filter, kindly choose some other filter</span>
+                </Card> }        
+            </Card>
         </div>
       </div>
     </div>
