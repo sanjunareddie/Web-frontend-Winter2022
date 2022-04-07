@@ -5,7 +5,8 @@
 
 import React, { useState, useEffect } from "react";
 import { Card, Dropdown, DropdownButton } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import houselogo from "../../Resources/House 02.jpg";
 import "../../css/Dashboard.css";
@@ -23,7 +24,7 @@ function Dashboard() {
 
   const loadHouses = (e) => {
     axios
-      .get("http://group12-backend.herokuapp.com/getallhouses")
+      .get("https://group12-backend.herokuapp.com/getallhouses")
       .then((res) => {
         if (res.data.success) {
           console.log(res.data.houses);
@@ -40,8 +41,8 @@ function Dashboard() {
     setFilterValue(e);
     setInputFlag(false);
   };
-  const handleHouseClick = (id) => {
-    navigate("/house/" + id);
+  const handleHouseClick = (id, email) => {
+    navigate("/house/" + id, { state: { email } });
   };
 
   const handleFilterInput = (event) => {
@@ -126,7 +127,7 @@ function Dashboard() {
                 {showHouses.map((item) => (
                   <div
                     className="row eachCard"
-                    onClick={() => handleHouseClick(item._id)}
+                    onClick={() => handleHouseClick(item._id, item.email)}
                   >
                     <div className="col-sm-3">
                       <Card className="image">

@@ -5,7 +5,7 @@
 
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -14,6 +14,7 @@ import { useEffect } from "react";
 const RentalForm = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const { state } = useLocation();
 
   const intialValues = {
     fullName: "",
@@ -23,7 +24,7 @@ const RentalForm = () => {
     postalcode: "",
     noofpeople: "",
     date: "",
-    house_id: params.id,
+    house_email: state?.emailAddress,
   };
   const [formValues, setFormValues] = useState(intialValues);
 
@@ -37,7 +38,7 @@ const RentalForm = () => {
     postalcode,
     noofpeople,
     date,
-    house_id,
+    house_email,
   } = formValues;
 
   const handleChange = (e) => {
@@ -94,12 +95,12 @@ const RentalForm = () => {
       return alert("Date field should be valid one!");
     }
 
-    console.log("id :", house_id);
+    formValues.house_email = state?.emailAddress;
+    console.log("formValues :", formValues);
     axios
-      .post(
-        "https://group12-backend.herokuapp.com/applicationdashboardRoute/addapplications",
-        { formValues }
-      )
+      .post("http://localhost:3000/applicationdashboardRoute/addapplications", {
+        formValues,
+      })
       .then((res) => {
         alert("All values submit successfully!! ");
       })
