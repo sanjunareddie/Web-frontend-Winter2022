@@ -90,7 +90,7 @@ function Dashboard() {
           <div className="col-sm-12">
             <div className="filterdropdown">
               <DropdownButton
-                alignRight
+                alignRight={true}
                 title={
                   filtervalue ? "Filter by " + filtervalue : "Filter options"
                 }

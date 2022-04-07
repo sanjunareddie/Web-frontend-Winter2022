@@ -7,6 +7,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -16,12 +17,22 @@ import { LinkContainer } from "react-router-bootstrap";
 import ProfileImage from "../../Resources/user-avatar02.png";
 import axios from "axios";
 
+const mobileNumberRegex = /^[0-9]{10}$/;
+const nameRegex = /^[A-Za-z]+$/;
+
 function UserProfile() {
   const navigate = useNavigate();
 
-  const mobileNumberRegex = /^[0-9]{10}$/;
-  const nameRegex = /^[A-Za-z]+$/;
+  const [data, setData] = useState({
+    email: localStorage.getItem("email"),
+    contactNumber: "",
+    currentCity: "Halifax",
+    preferredCity: "Halifax",
+    country: "Canada",
+  });
 
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -33,12 +44,15 @@ function UserProfile() {
       });
       console.log(res);
       if (res.status === 200) {
+        setData((prev) => ({
+          ...prev,
+          contactNumber: res.data.users.contactNumber,
+          currentCity: res.data.users.currentCity,
+          preferredCity: res.data.users.preferredCity,
+          country: res.data.users.country,
+        }));
         setFirstName(res.data.users.firstName);
         setLastName(res.data.users.lastName);
-        setData((data.contactNumber = res.data.users.contactNumber));
-        setData((data.currentCity = res.data.users.currentCity));
-        setData((data.preferredCity = res.data.users.preferredCity));
-        setData((data.country = res.data.users.country));
       }
     } catch (error) {
       console.log(error);
@@ -46,19 +60,8 @@ function UserProfile() {
   }, []);
 
   const handleSignOut = () => {
-    navigate("/sign-in", { replace: true });
-    localStorage.clear();
+    // navigate("/sign-in", { replace: true });
   };
-
-  const [data, setData] = useState({
-    email: localStorage.getItem("email"),
-    contactNumber: "",
-    currentCity: "Halifax",
-    preferredCity: "Halifax",
-    country: "Canada",
-  });
-
-  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = ({ target: { name, value } }) => {
     setData((prev) => ({ ...prev, [name]: value }));
@@ -83,7 +86,9 @@ function UserProfile() {
         console.log(res);
         console.log(res.message);
         if (res.status === 200) {
-          navigate("/profile");
+          setSuccessMessage(
+            "Your profile details has been updated successfully."
+          );
         }
       } catch (error) {
         setErrorMessage(error.message);
@@ -118,6 +123,9 @@ function UserProfile() {
                   Way to your dream house
                 </h6>
               </div>
+              {successMessage && (
+                <Alert variant="success" className="mb-0">{successMessage}</Alert>
+              )}
               <br />
               <div className="button-center form-group">
                 <input

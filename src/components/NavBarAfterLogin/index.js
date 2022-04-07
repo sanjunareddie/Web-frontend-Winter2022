@@ -12,6 +12,10 @@ import Container from "react-bootstrap/Container";
 import Logo from "../../Resources/housify-logo-white.png";
 
 function NavBarAfterLogin() {
+  const handleSignOut = () => {
+    localStorage.clear();
+  };
+
   return (
     <Navbar fixed="top" className="navbar-color navbar navbar-dark" expand="lg">
       <Container>
@@ -66,8 +70,15 @@ function NavBarAfterLogin() {
           </Nav>
 
           <Nav.Item className="ms-auto p-2">
-            <NavLink to="/profile" className="nav-text-color">
+            <NavLink to="/profile" className="nav-text-color me-3">
               Profile
+            </NavLink>
+            <NavLink
+              to="/sign-in"
+              onClick={handleSignOut}
+              className="nav-text-color"
+            >
+              Sign out
             </NavLink>
           </Nav.Item>
         </Navbar.Collapse>
