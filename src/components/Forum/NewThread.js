@@ -11,7 +11,7 @@ import axios from "axios";
 
 const NewThread = () => {
   const navigate = useNavigate();
-  const apiUrl = "https://group12-backend.herokuapp.com/addthread";
+  const apiUrl = "http://localhost:8080/addthread";
 
   const handleBack = (e) => {
     e.preventDefault();
@@ -20,24 +20,24 @@ const NewThread = () => {
 
   const [threadInfo, setThreadInfo] = useState({
     title: "",
-    description: "",
+    reply: "",
   });
 
   const handleChange = (e) => {
     const newData = { ...threadInfo };
-    newData[e.target.name] = e.target.value;
+    newData[e.target.id] = e.target.value;
     setThreadInfo(newData);
-    console.log(newData);
+    console.log(e.target);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log(threadInfo);
     axios
       .post(apiUrl, {
         title: threadInfo.title,
-        description: threadInfo.description,
-        email: localStorage.getItem("email"),
+        description: threadInfo.reply,
+        email: `${localStorage.getItem("email")}`,
       })
       .then((res) => {
         console.log("Submitted", res.data);
@@ -67,10 +67,7 @@ const NewThread = () => {
         <div className="card-body" style={{ padding: "5px" }}>
           <Form>
             <div className="card-body">
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
+              <Form.Group className="mb-3">
                 <Form.Control
                   id="title"
                   as="input"
@@ -85,7 +82,7 @@ const NewThread = () => {
                   as="textarea"
                   rows={3}
                   placeholder="Write your description here"
-                  defaultValue={threadInfo.description}
+                  defaultValue={threadInfo.reply}
                   onChange={handleChange}
                 />
               </Form.Group>
