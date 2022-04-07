@@ -29,12 +29,6 @@ function NavBarAfterLogin() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="nav-text-color me-auto">
             <Nav.Item className="p-2">
-              <NavLink to="/sign-in" className="nav-text-color">
-                Sign-in
-              </NavLink>
-            </Nav.Item>
-
-            <Nav.Item className="p-2">
               <NavLink to="/dashboard" className="nav-text-color">
                 Dashboard
               </NavLink>

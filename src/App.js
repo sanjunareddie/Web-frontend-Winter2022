@@ -28,7 +28,14 @@ import AddReview from "./components/AddReview";
 import EditReview from "./components/EditReview";
 
 const PrivateRoute = ({ children }) => {
-  return isLoggedIn() ? children : <Navigate to="/sign-in" replace={true} />;
+  return isLoggedIn() ? (
+    <>
+      <NavBarAfterLogin />
+      {children}
+    </>
+  ) : (
+    <Navigate to="/sign-in" replace={true} />
+  );
 };
 
 const PublicRoute = ({ children }) => {
@@ -38,9 +45,6 @@ const PublicRoute = ({ children }) => {
 function App() {
   return (
     <>
-      <div>
-        <NavBarAfterLogin />
-      </div>
       <div className="">
         <Routes>
           <Route

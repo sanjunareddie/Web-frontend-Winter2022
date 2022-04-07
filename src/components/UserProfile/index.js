@@ -19,6 +19,9 @@ import axios from "axios";
 function UserProfile() {
   const navigate = useNavigate();
 
+  const mobileNumberRegex = /^[0-9]{10}$/;
+  const nameRegex = /^[A-Za-z]+$/;
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -32,6 +35,10 @@ function UserProfile() {
       if (res.status === 200) {
         setFirstName(res.data.users.firstName);
         setLastName(res.data.users.lastName);
+        setData((data.contactNumber = res.data.users.contactNumber));
+        setData((data.currentCity = res.data.users.currentCity));
+        setData((data.preferredCity = res.data.users.preferredCity));
+        setData((data.country = res.data.users.country));
       }
     } catch (error) {
       console.log(error);
@@ -41,6 +48,48 @@ function UserProfile() {
   const handleSignOut = () => {
     navigate("/sign-in", { replace: true });
     localStorage.clear();
+  };
+
+  const [data, setData] = useState({
+    email: localStorage.getItem("email"),
+    contactNumber: "",
+    currentCity: "Halifax",
+    preferredCity: "Halifax",
+    country: "Canada",
+  });
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleChange = ({ target: { name, value } }) => {
+    setData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!mobileNumberRegex.test(data.contactNumber)) {
+      setErrorMessage("Only 10 digit number allowed");
+    } else if (!nameRegex.test(data.currentCity)) {
+      setErrorMessage("Invalid current city name - Only alphabets allowed");
+    } else if (!nameRegex.test(data.preferredCity)) {
+      setErrorMessage("Invalid preferred city name - Only alphabets allowed");
+    } else if (!nameRegex.test(data.country)) {
+      setErrorMessage("Invalid country name - Only alphabets allowed");
+    } else {
+      setErrorMessage("");
+      try {
+        const url = "http://localhost:8080/updateUserProfile";
+        const res = await axios.post(url, data);
+        console.log(res);
+        console.log(res.message);
+        if (res.status === 200) {
+          navigate("/profile");
+        }
+      } catch (error) {
+        setErrorMessage(error.message);
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -75,6 +124,9 @@ function UserProfile() {
                   type="text"
                   className="form-control inside-textbox form-field-color"
                   placeholder="Add Contact Number"
+                  name="contactNumber"
+                  value={data.contactNumber}
+                  onChange={handleChange}
                 />
               </div>
               <br />
@@ -83,6 +135,9 @@ function UserProfile() {
                   type="text"
                   className="form-control inside-textbox form-field-color"
                   placeholder="Your Current City"
+                  name="currentCity"
+                  value={data.currentCity}
+                  onChange={handleChange}
                 />
               </div>
               <br />
@@ -91,6 +146,9 @@ function UserProfile() {
                   type="text"
                   className="form-control inside-textbox form-field-color"
                   placeholder="Add Preffered City"
+                  name="preferredCity"
+                  value={data.preferredCity}
+                  onChange={handleChange}
                 />
               </div>
               <br />
@@ -99,9 +157,17 @@ function UserProfile() {
                   type="text"
                   className="form-control inside-textbox form-field-color"
                   placeholder="Canada"
+                  name="country"
+                  value={data.country}
+                  onChange={handleChange}
                 />
               </div>
               <br />
+              {errorMessage.length > 0 ? (
+                <p className="button-center" style={{ color: "red" }}>
+                  {errorMessage}
+                </p>
+              ) : null}
               <br />
               <Row>
                 <Col>
@@ -113,7 +179,9 @@ function UserProfile() {
                 </Col>
                 <Col>
                   <div className="button-center">
-                    <Button variant="success">Save Changes</Button>
+                    <Button variant="success" onClick={handleSubmit}>
+                      Save Changes
+                    </Button>
                   </div>
                 </Col>
               </Row>
