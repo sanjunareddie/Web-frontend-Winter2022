@@ -26,10 +26,19 @@ const UpdateApplicationStatus = () => {
 
   const loadApplications = (e) => {
     axios
-      .get("https://group12-backend.herokuapp.com/applicationdashboardRoute/applications")
+      .get(
+        "https://group12-backend.herokuapp.com/applicationdashboardRoute/applications"
+      )
       .then((res) => {
         if (res.data.success) {
-          setApplication(res.data.applications);
+          var applicationData = [];
+          res.data.applications.map((app) => {
+            if (app.house_email === localStorage.email) {
+              applicationData.push(app);
+            }
+          });
+
+          setApplication(applicationData);
         }
       })
       .catch((error) => {
@@ -63,9 +72,12 @@ const UpdateApplicationStatus = () => {
                   </tr>
                 </thead>
                 <tbody>
-                {application.filter(emailID => emailID.email===localStorage.email).map((filteredEmail, index) => {
+                  {application.map((filteredEmail, index) => {
                     return (
-                      <tr key={index} onClick={() => handleClick(filteredEmail)}>
+                      <tr
+                        key={index}
+                        onClick={() => handleClick(filteredEmail)}
+                      >
                         <td>{filteredEmail.applicationID}</td>
                         <td>{filteredEmail.fullName}</td>
                         <td>{convertDate(filteredEmail.applieddate)}</td>
@@ -79,7 +91,7 @@ const UpdateApplicationStatus = () => {
           </>
         ) : (
           <center>
-            <h3 color="#000">No application found</h3>
+            <h3 color="#000">No applications found</h3>
           </center>
         )}
       </Container>
