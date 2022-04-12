@@ -71,7 +71,7 @@ function Payment() {
       setErrorMessage("");
 
       try {
-        const url = "http://localhost:8080/savePayment";
+        const url = "https://group12-backend.herokuapp.com//savePayment";
         const res = await axios.post(url, {
           paymentDetails: dataToSend,
           email: localStorage.getItem("email"),
