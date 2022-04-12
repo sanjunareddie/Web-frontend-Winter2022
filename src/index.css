@@ -119,6 +119,31 @@ html,
   width: auto;
 }
 
+.image-div-margin {
+  padding: 30px;
+}
+
+.payment-font-left {
+  text-align: left !important;
+  padding-left: 45px !important;
+}
+
+.center-all-items {
+  align-self: center !important;
+}
+
+.center-card {
+  margin: 0 auto !important;
+}
+
+.payment-column-width {
+  width: 400px;
+}
+
+.align-left-buttons {
+  align-content: l;
+}
+
 .house-card-margin {
   margin: 10px;
 }
@@ -138,6 +163,14 @@ html,
 
 .align-left-property-card {
   justify-content: center;
+}
+
+.outer-padding {
+  padding-top: 100px !important;
+}
+
+.pay-rent-button {
+  padding-left: 30px !important;
 }
 
 .outer .form-control:focus {

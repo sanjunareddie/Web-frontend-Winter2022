@@ -29,6 +29,8 @@ import EditReview from "./components/EditReview";
 import ForgotPasswordEmail from "./components/forgotPasswordEmail";
 import EnterNewPassword from "./components/enterNewPassword";
 import CheckMail from "./components/CheckMail";
+import Payment from "./components/Payment";
+import ShowPayments from "./components/ShowPayments";
 
 const PrivateRoute = ({ children }) => {
   return isLoggedIn() ? (
@@ -86,6 +88,27 @@ function App() {
               </PrivateRoute>
             }
           />
+
+          <Route
+            exact
+            path="/payment"
+            element={
+              <PrivateRoute>
+                <Payment />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            exact
+            path="/show-payments"
+            element={
+              <PrivateRoute>
+                <ShowPayments />
+              </PrivateRoute>
+            }
+          />
+
           <Route
             exact
             path="/saved-searches"

@@ -7,6 +7,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { Button, Container } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import { LinkContainer } from "react-router-bootstrap";
 
 const ViewApplicationStatus = () => {
   const navigate = useNavigate();
@@ -22,7 +25,9 @@ const ViewApplicationStatus = () => {
 
   const loadApplications = (e) => {
     axios
-      .get("https://group12-backend.herokuapp.com/applicationdashboardRoute/applications")
+      .get(
+        "https://group12-backend.herokuapp.com/applicationdashboardRoute/applications"
+      )
       .then((res) => {
         if (res.data.success) {
           setApplication(res.data.applications);
@@ -35,7 +40,10 @@ const ViewApplicationStatus = () => {
 
   const deleteApplication = (app) => {
     axios
-      .post("https://group12-backend.herokuapp.com/applicationdashboardRoute/deleteApplication", { app })
+      .post(
+        "https://group12-backend.herokuapp.com/applicationdashboardRoute/deleteApplication",
+        { app }
+      )
       .then((res) => {
         alert(" Deleted successfully");
         loadApplications();
@@ -58,7 +66,7 @@ const ViewApplicationStatus = () => {
       </h4>
 
       <Container fluid style={{ padding: "20px" }}>
-        {application.length !==0  ? (
+        {application.length !== 0 ? (
           <>
             <div style={{ margin: "20px" }}>
               <table className="table table-hover">
@@ -80,26 +88,56 @@ const ViewApplicationStatus = () => {
                           <td>{convertDate(filteredEmail.applieddate)}</td>
                         </tr>
                       );})} */}
-                  {application.filter(emailID => emailID.email===localStorage.email).map((filteredEmail, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{filteredEmail.applicationID}</td>
-                        <td>{filteredEmail.fullName}</td>
-                        <td>{convertDate(filteredEmail.applieddate)}</td>
-                        <td>{filteredEmail.status}</td>
-                        <td>
-                          <Button
-                            variant="primary"
-                            size="sm"
-                            onClick={() => deleteApplication(filteredEmail)}
-                            className="btn btn-secondary btn-block btn-round"
-                          >
-                            Delete
-                          </Button>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {application
+                    .filter((emailID) => emailID.email === localStorage.email)
+                    .map((filteredEmail, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{filteredEmail.applicationID}</td>
+                          <td>{filteredEmail.fullName}</td>
+                          <td>{convertDate(filteredEmail.applieddate)}</td>
+                          <td>{filteredEmail.status}</td>
+                          <Row>
+                            <Col>
+                              <Button
+                                variant="primary"
+                                size="sm"
+                                onClick={() => deleteApplication(filteredEmail)}
+                                className="btn btn-secondary btn-block btn-round"
+                              >
+                                Delete
+                              </Button>
+                            </Col>
+                            {filteredEmail.status === "Accept" && (
+                              <Col>
+                                <LinkContainer to="/payment">
+                                  <Button
+                                    variant="success"
+                                    size="sm"
+                                    className="btn-block btn-round"
+                                  >
+                                    Pay-rent
+                                  </Button>
+                                </LinkContainer>
+                              </Col>
+                            )}
+                            {filteredEmail.status === "Accept" && (
+                              <Col>
+                                <LinkContainer to="/show-payments">
+                                  <Button
+                                    variant="primary"
+                                    size="sm"
+                                    className="btn-block btn-round"
+                                  >
+                                    Show Payments
+                                  </Button>
+                                </LinkContainer>
+                              </Col>
+                            )}
+                          </Row>
+                        </tr>
+                      );
+                    })}
                 </tbody>
               </table>
             </div>

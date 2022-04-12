@@ -11,7 +11,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useEffect, useState } from "react";
 
-import House1 from "../../Resources/House 01.jpg";
 import axios from "axios";
 
 var propertiesList = [];
@@ -82,7 +81,7 @@ function SavedSearches() {
                         {property.address.street}
                       </Card.Text>
                       <Card.Text style={{ marginBottom: "1rem" }}>
-                      {property.address.city} {property.address.province}
+                        {property.address.city} {property.address.province}
                       </Card.Text>
                       <Button variant="primary">Explore more</Button>
                     </Card.Body>
