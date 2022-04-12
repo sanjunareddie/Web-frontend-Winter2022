@@ -124,7 +124,9 @@ function UserProfile() {
                 </h6>
               </div>
               {successMessage && (
-                <Alert variant="success" className="mb-0">{successMessage}</Alert>
+                <Alert variant="success" className="mb-0">
+                  {successMessage}
+                </Alert>
               )}
               <br />
               <div className="button-center form-group">
